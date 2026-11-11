@@ -17,6 +17,5 @@ class Dashboard extends Model
         'kategori',
         'harga',
         'stok',
-        'deskripsi',
     ];
 }

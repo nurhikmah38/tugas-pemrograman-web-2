@@ -42,13 +42,7 @@ class DashboardFactory extends Factory
             'kategori' => $pilihan['kategori'],
             'harga' => fake()->numberBetween(10000, 1000000),
             'stok' => fake()->numberBetween(1, 100),
-            'deskripsi' => fake()->randomElement([
-                'Produk berkualitas dengan harga terjangkau.',
-                'Memiliki desain modern dan menarik.',
-                'Cocok digunakan untuk kebutuhan sehari-hari.',
-                'Produk pilihan dengan kualitas terbaik.',
-                'Tersedia dengan berbagai pilihan menarik.',
-            ]),
+
         ];
     }
 }

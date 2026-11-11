@@ -81,4 +81,15 @@ class DashboardController extends Controller
         return redirect('/dashboard')
             ->with('success', 'Data produk berhasil diperbarui!');
     }
+
+    // Menghapus data produk
+    public function destroy($id)
+    {
+        $produk = Product::findOrFail($id);
+
+        $produk->delete();
+
+        return redirect('/dashboard')
+            ->with('success', 'Data produk berhasil dihapus!');
+    }
 }
