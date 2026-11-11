@@ -35,7 +35,6 @@ class DashboardController extends Controller
             'kategori' => 'required',
             'harga' => 'required|numeric|min:0',
             'stok' => 'required|integer|min:0',
-
         ], [
             'nama_produk.required' => 'Nama produk wajib diisi.',
             'kode_produk.required' => 'Kode produk wajib diisi.',
@@ -53,17 +52,33 @@ class DashboardController extends Controller
             ->with('success', 'Data produk berhasil ditambahkan!');
     }
 
-
-
-
-    // Menghapus data produk
-    public function destroy($id)
+    // Menampilkan halaman edit produk
+    public function edit($id)
     {
         $produk = Product::findOrFail($id);
 
-        $produk->delete();
+        return view('dashboard.edit', [
+            'title' => 'Edit Data Produk',
+            'produk' => $produk,
+        ]);
+    }
+
+    // Memperbarui data produk
+    public function update(Request $request, $id)
+    {
+        $produk = Product::findOrFail($id);
+
+        $validated = $request->validate([
+            'nama_produk' => 'required',
+            'kode_produk' => 'required|unique:products,kode_produk,' . $id,
+            'kategori' => 'required',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
+        ]);
+
+        $produk->update($validated);
 
         return redirect('/dashboard')
-            ->with('success', 'Data produk berhasil dihapus!');
+            ->with('success', 'Data produk berhasil diperbarui!');
     }
 }
