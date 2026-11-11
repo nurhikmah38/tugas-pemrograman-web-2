@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Nur Hikmah Tugas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   </head>
   <body>
 
     {{-- title --}}
 
-    <div class="bg-primary py-5 text-center text-white">
-        <h1 class="fw-bold">{{$title}}</h1>
-    </div>
+    <div class="py-5 text-center text-white" style="background-color: #f7a8c4;">
+    <h1 class="fw-bold">{{ $title }}</h1>
+</div>
 
 
     {{-- content --}}

@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -6,27 +7,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('dashboards', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('nim');
-            $table->date('tanggal');
-            $table->string('mata_kuliah');
-            $table->time('jam_masuk');
-            $table->string('status');
-            $table->text('keterangan')->nullable();
+            $table->string('nama_produk');
+            $table->string('kode_produk')->unique();
+            $table->string('kategori');
+            $table->decimal('harga', 12, 2);
+            $table->integer('stok');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('dashboards');

@@ -2,38 +2,53 @@
 
 namespace Database\Factories;
 
-use App\Models\dashboard;
+use App\Models\Dashboard;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<dashboard>
- */
 class DashboardFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Dashboard::class;
+
     public function definition(): array
     {
+        $produk = [
+            ['nama' => 'Laptop Asus', 'kategori' => 'Elektronik'],
+            ['nama' => 'Laptop Lenovo', 'kategori' => 'Elektronik'],
+            ['nama' => 'Mouse Wireless', 'kategori' => 'Elektronik'],
+            ['nama' => 'Keyboard Gaming', 'kategori' => 'Elektronik'],
+            ['nama' => 'Monitor LED', 'kategori' => 'Elektronik'],
+            ['nama' => 'Headphone Bluetooth', 'kategori' => 'Elektronik'],
+            ['nama' => 'Kamera Digital', 'kategori' => 'Elektronik'],
+            ['nama' => 'Power Bank', 'kategori' => 'Elektronik'],
+            ['nama' => 'Kipas Angin', 'kategori' => 'Elektronik'],
+            ['nama' => 'Setrika Listrik', 'kategori' => 'Elektronik'],
+            ['nama' => 'Blender', 'kategori' => 'Peralatan Rumah'],
+            ['nama' => 'Rice Cooker', 'kategori' => 'Peralatan Rumah'],
+            ['nama' => 'Lampu Tidur', 'kategori' => 'Peralatan Rumah'],
+            ['nama' => 'Botol Minum', 'kategori' => 'Peralatan Rumah'],
+            ['nama' => 'Buku Catatan', 'kategori' => 'Peralatan Rumah'],
+            ['nama' => 'Baju Kaos', 'kategori' => 'Pakaian'],
+            ['nama' => 'Celana Jeans', 'kategori' => 'Pakaian'],
+            ['nama' => 'Sepatu Sneakers', 'kategori' => 'Pakaian'],
+            ['nama' => 'Tas Ransel', 'kategori' => 'Aksesoris'],
+            ['nama' => 'Jam Tangan', 'kategori' => 'Aksesoris'],
+        ];
+
+        $pilihan = fake()->randomElement($produk);
+
         return [
-            'name' => fake()->name(),
-            'nim' => fake()->numerify('########'),
-            'tanggal' => fake()->date(),
-            'mata_kuliah' => fake()->randomElement([
-                'Pemrograman Web',
-                'Kecerdasan Buatan',
-                'Basis Data',
+            'nama_produk' => $pilihan['nama'],
+            'kode_produk' => fake()->unique()->numerify('PRD-#####'),
+            'kategori' => $pilihan['kategori'],
+            'harga' => fake()->numberBetween(10000, 1000000),
+            'stok' => fake()->numberBetween(1, 100),
+            'deskripsi' => fake()->randomElement([
+                'Produk berkualitas dengan harga terjangkau.',
+                'Memiliki desain modern dan menarik.',
+                'Cocok digunakan untuk kebutuhan sehari-hari.',
+                'Produk pilihan dengan kualitas terbaik.',
+                'Tersedia dengan berbagai pilihan menarik.',
             ]),
-            'jam_masuk' => fake()->time('H:i:s'),
-            'status' => fake()->randomElement([
-                'Hadir',
-                'Izin',
-                'Sakit',
-                'Alpa',
-            ]),
-            'keterangan' => fake()->sentence(),
         ];
     }
 }

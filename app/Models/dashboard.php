@@ -2,16 +2,21 @@
 
 namespace App\Models;
 
-
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-#[Fillable(['name', 'nim', 'tanggal', 'mata_kuliah', 'jam_masuk', 'status', 'keterangan'])]
-
-
-class dashboard extends Model
+class Dashboard extends Model
 {
-    /** @use HasFactory<\Database\Factories\DashboardFactory> */
     use HasFactory;
+
+    protected $table = 'products';
+
+    protected $fillable = [
+        'nama_produk',
+        'kode_produk',
+        'kategori',
+        'harga',
+        'stok',
+        'deskripsi',
+    ];
 }
