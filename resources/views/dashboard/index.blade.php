@@ -16,6 +16,7 @@
 
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-center">
+
                 <thead class="table-pink">
                     <tr>
                         <th>No</th>
@@ -24,7 +25,7 @@
                         <th>Kategori</th>
                         <th>Harga</th>
                         <th>Stok</th>
-                        <th>Deskripsi</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
 
@@ -37,14 +38,36 @@
                             <td>{{ $produk->kategori }}</td>
                             <td>Rp {{ number_format($produk->harga, 0, ',', '.') }}</td>
                             <td>{{ $produk->stok }}</td>
-                            <td>{{ $produk->deskripsi }}</td>
+
+                            {{-- Kolom Aksi --}}
+                            <td>
+                                <a href="/dashboard/{{ $produk->id }}/edit"
+                                   class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+
+                                <form action="/dashboard/{{ $produk->id }}"
+                                      method="POST"
+                                      style="display: inline;"
+                                      onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Hapus
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
+
                     @empty
                         <tr>
                             <td colspan="7">Belum ada data produk.</td>
                         </tr>
                     @endforelse
                 </tbody>
+
             </table>
         </div>
 
@@ -65,6 +88,6 @@
             background-color: #f7b6d2;
             color: #333;
         }
-
     </style>
+
 </x-app>
