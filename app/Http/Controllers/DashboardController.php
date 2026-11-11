@@ -10,11 +10,11 @@ class DashboardController extends Controller
     // Menampilkan seluruh data produk
     public function index()
     {
-        $products = Product::all();
+        $products = Product::latest()->get();
 
         return view('dashboard.index', [
             'title' => 'DATA PRODUK',
-            'products' => Product::latest()->get(),
+            'products' => $products,
         ]);
     }
 
@@ -33,9 +33,9 @@ class DashboardController extends Controller
             'nama_produk' => 'required',
             'kode_produk' => 'required|unique:products,kode_produk',
             'kategori' => 'required',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',
-            'deskripsi' => 'nullable',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
+
         ], [
             'nama_produk.required' => 'Nama produk wajib diisi.',
             'kode_produk.required' => 'Kode produk wajib diisi.',
@@ -47,11 +47,23 @@ class DashboardController extends Controller
             'stok.integer' => 'Stok harus berupa angka bulat.',
         ]);
 
-
-
         Product::create($validated);
 
         return redirect('/dashboard')
             ->with('success', 'Data produk berhasil ditambahkan!');
+    }
+
+
+
+
+    // Menghapus data produk
+    public function destroy($id)
+    {
+        $produk = Product::findOrFail($id);
+
+        $produk->delete();
+
+        return redirect('/dashboard')
+            ->with('success', 'Data produk berhasil dihapus!');
     }
 }

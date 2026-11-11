@@ -84,14 +84,6 @@
                     @enderror
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Deskripsi Produk</label>
-                    <textarea name="deskripsi"
-                        class="form-control"
-                        rows="3"
-                        placeholder="Masukkan deskripsi produk">{{ old('deskripsi') }}</textarea>
-                </div>
-
                 <button type="submit" class="btn btn-pink">
                     Simpan Produk
                 </button>
